@@ -2,18 +2,20 @@ import React from "react";
 import InputForm from "./InputForm";
 
 function PersonalInfo({
-	setPassword: _setPassword,
-	setFullName: _setFullName,
+	full_name,
+	password,
+	setPassword,
+	setFullName,
 	setCurrentStep,
 }) {
-	const [full_name, setFullName] = React.useState("");
-	const [password, setPassword] = React.useState("");
-
 	const handleFullNameChange = (e) => setFullName(e.target.value);
 	const handlePasswordChange = (e) => setPassword(e.target.value);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(full_name);
+		console.log(password);
+		debugger;
 		setCurrentStep(3);
 	};
 

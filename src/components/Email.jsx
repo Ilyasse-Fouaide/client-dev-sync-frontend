@@ -2,8 +2,7 @@ import React from "react";
 import useEmailFetch from "../hooks/useEmailFetch";
 import InputForm from "./InputForm";
 
-function Email({ setEmail: _setEmail, setCurrentStep }) {
-	const [email, setEmail] = React.useState("");
+function Email({ email, setEmail, setCurrentStep }) {
 	const [error, setError] = React.useState("");
 	const [isLoading, setIsloading] = React.useState(false);
 
@@ -18,7 +17,6 @@ function Email({ setEmail: _setEmail, setCurrentStep }) {
 		useEmailFetch(email)
 			.then(() => {
 				setCurrentStep(2);
-				_setEmail(email);
 			})
 			.catch((error) => {
 				setError(error?.response?.data?.message);

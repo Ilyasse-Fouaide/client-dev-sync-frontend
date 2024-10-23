@@ -1,6 +1,7 @@
 import React from "react";
 import Email from "../components/Email";
 import PersonalInfo from "../components/PersonalInfo";
+import AdditionalInfo from "../components/AdditionalInfo";
 
 function Register() {
 	const [currentStep, setCurrentStep] = React.useState(1);
@@ -11,16 +12,22 @@ function Register() {
 	const [location, setLocation] = React.useState(null);
 	const [birthday, setBirthday] = React.useState(null);
 
-	const [errors, setErrors] = React.useState({});
-
 	const renderdField = (step) => {
 		switch (step) {
 			case 1:
-				return <Email setEmail={setEmail} setCurrentStep={setCurrentStep} />;
+				return (
+					<Email
+						email={email}
+						setEmail={setEmail}
+						setCurrentStep={setCurrentStep}
+					/>
+				);
 
 			case 2:
 				return (
 					<PersonalInfo
+						full_name={full_name}
+						password={password}
 						setFullName={setFullName}
 						setPassword={setPassword}
 						setCurrentStep={setCurrentStep}
@@ -28,7 +35,16 @@ function Register() {
 				);
 
 			case 3:
-				return <div>Location</div>;
+				return (
+					<AdditionalInfo
+						email={email}
+						full_name={full_name}
+						password={password}
+						setBirthday={setBirthday}
+						setLocation={setLocation}
+						setCurrentStep={setCurrentStep}
+					/>
+				);
 		}
 	};
 
