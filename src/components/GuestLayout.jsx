@@ -1,13 +1,14 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useAuthContext } from "../context/ContextProvier";
+import LoadingSpinner from "./LoadingSpinner";
 
 function GuestLayout() {
 	console.log("check if the user authenticate, if true navigate to /home");
-	const { data, error, isError, isLoading } = useAuthContext();
+	const { data, isLoading } = useAuthContext();
 
 	if (isLoading) {
-		return "Loading...";
+		return <LoadingSpinner />;
 	}
 
 	if (data) {
