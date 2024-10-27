@@ -40,6 +40,7 @@ function Login() {
 							isError={error}
 							ref={emailRef}
 							type="email"
+							isLoading={isLoading}
 							placeholder="name@company.com"
 						/>
 					</div>
@@ -50,6 +51,7 @@ function Login() {
 						</label>
 						<InputForm
 							isError={error}
+							isLoading={isLoading}
 							ref={passwordRef}
 							type="password"
 							placeholder="Enter your password"
@@ -66,7 +68,10 @@ function Login() {
 					)}
 
 					<div className="mt-5">
-						<button className="text-xs w-full bg-blue-500 text-zinc-50 rounded-[3px] px-4 py-2">
+						<button
+							disabled={isLoading}
+							className="text-xs w-full bg-blue-500 text-zinc-50 rounded-[3px] px-4 py-2"
+						>
 							Submit
 						</button>
 					</div>

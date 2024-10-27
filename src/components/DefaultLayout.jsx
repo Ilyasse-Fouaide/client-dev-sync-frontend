@@ -2,8 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { useAuthContext } from "../context/ContextProvier";
 import LoadingSpinner from "./LoadingSpinner";
+import NavBar from "./NavBar";
+import Aside from "./Aside";
 
 function DefaultLayout() {
+	const [clicked, setClicked] = React.useState(false);
 	const { error, isError, isLoading } = useAuthContext();
 
 	if (isError) {
@@ -20,8 +23,13 @@ function DefaultLayout() {
 
 	return (
 		<div>
-			DefaultLayout
-			<Outlet />
+			<NavBar setClicked={setClicked} clicked={clicked} />
+			<div className="flex">
+				<Aside clicked={clicked} />
+				<div className="p-2">
+					<Outlet />
+				</div>
+			</div>
 		</div>
 	);
 }

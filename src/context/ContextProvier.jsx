@@ -8,6 +8,7 @@ function ContextProvier({ children }) {
 		queryKey: ["profile"],
 		queryFn: useFetchProfile,
 		retry: false,
+		refetchOnWindowFocus: false,
 	});
 
 	return (
