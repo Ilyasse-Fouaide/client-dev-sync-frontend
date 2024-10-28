@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 import MyWork from "../pages/MyWork";
+import Dashboard from "../pages/Dashboard";
 import DefaultLayout from "../components/DefaultLayout";
 import GuestLayout from "../components/GuestLayout";
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
 			{
 				path: "/my-work",
 				element: <MyWork />,
+			},
+			{
+				path: "/dashboard",
+				element: <Dashboard />,
 			},
 		],
 	},

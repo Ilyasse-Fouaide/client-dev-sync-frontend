@@ -37,11 +37,11 @@ function MyProjects() {
 				</div>
 				<div className="font-semibold">My projects</div>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 				{projects.map((project, key) => (
 					<Link to={`/projects/${project.project._id}`} key={key}>
 						<div className="border border-indigo-950/20 rounded-[6px] p-2 hover:shadow-lg hover:border-white">
-							<div className="w-full bg-indigo-500 aspect-video rounded-[calc(8px-6px)] mb-2"></div>
+							<div className="w-full bg-zinc-200 aspect-video rounded-[calc(8px-6px)] mb-2"></div>
 							<div className="flex items-center justify-between">
 								<div className="flex items-center">
 									<PanelLeft size={14} className="mr-2 text-zinc-500" />
