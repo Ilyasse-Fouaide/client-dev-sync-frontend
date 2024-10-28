@@ -3,7 +3,7 @@ import MyProjects from "../components/MyProjects";
 
 function Home() {
 	return (
-		<div>
+		<div className="w-[70%] h-full">
 			<MyProjects />
 		</div>
 	);

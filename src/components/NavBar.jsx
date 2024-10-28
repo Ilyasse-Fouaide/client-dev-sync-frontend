@@ -20,11 +20,11 @@ function NavBar({ clicked, setClicked }) {
 	return (
 		<nav className="py-[6px] px-3 bg-indigo-50 flex justify-between border-b border-indigo-200">
 			<ul className="flex items-center">
-				<li>
+				<li className="hidden md:block">
 					<button
-						className={`mr-3 focus:outline-2 focus:outline-indigo-500 w-[30px] aspect-square flex items-center justify-center ${
-							clicked ? "bg-indigo-600 text-indigo-50" : ""
-						} rounded-full cursor-pointer`}
+						className={`mr-3 focus:outline-2 focus:outline-blue-500 w-[30px] aspect-square flex items-center justify-center rounded-[6px] cursor-pointer ${
+							clicked ? "bg-blue-200 text-blue-800" : ""
+						}`}
 						onClick={() => setClicked((prev) => !prev)}
 					>
 						<Grip size={20} />
@@ -54,9 +54,9 @@ function NavBar({ clicked, setClicked }) {
 				<li className="relative" ref={ref}>
 					<button
 						onClick={handleProfileClick}
-						className="w-[30px] h-[30px] flex items-center justify-center bg-indigo-600 rounded-full cursor-pointer focus:outline-2 focus:outline-indigo-800"
+						className="w-[30px] h-[30px] flex items-center justify-center bg-blue-700 rounded-full cursor-pointer focus:outline-2 focus:outline-blue-800"
 					>
-						<User size={16} className="text-indigo-50" />
+						<User size={16} className="text-blue-50" />
 					</button>
 					{profileClicked && <ProfilePopup />}
 				</li>
