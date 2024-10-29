@@ -37,7 +37,7 @@ function MyProjects() {
 				</div>
 				<div className="font-semibold">My projects</div>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+			<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 				{projects.map((project, key) => (
 					<Link to={`/projects/${project.project._id}`} key={key}>
 						<div className="border border-indigo-950/20 rounded-[6px] p-2 hover:shadow-lg hover:border-white">
@@ -45,8 +45,9 @@ function MyProjects() {
 							<div className="flex items-center justify-between">
 								<div className="flex items-center">
 									<PanelLeft size={14} className="mr-2 text-zinc-500" />
-									<h2 className="text-[13px] font-semibold text-zinc-800">
+									<h2 className="text-[13px] font-semibold w-[100px] min-[400px]:w-[150px] min-[600px]:w-[230px] md:w-[110px] lg:w-[100px] xl:w-[160px] text-nowrap overflow-hidden text-ellipsis text-zinc-800">
 										{project.project.name}
+										{"asdjagsdjagsdhjasgdhjagsdjhagdjhasgdjagsdhjag"}
 									</h2>
 								</div>
 								<div className="flex items-center justify-center mr-[1px]">
@@ -54,7 +55,7 @@ function MyProjects() {
 										className="hover:bg-zinc-200/50 w-full h-full p-1 rounded-[3px]"
 										aria-label="Add to favorites"
 									>
-										<Star size={14} className="text-zinc-500 cursor-pointer" />
+										<Star size={14} className="cursor-pointer text-zinc-500" />
 									</button>
 								</div>
 							</div>

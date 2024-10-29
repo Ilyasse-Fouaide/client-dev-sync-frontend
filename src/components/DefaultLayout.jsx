@@ -11,9 +11,6 @@ function DefaultLayout() {
 	});
 
 	React.useEffect(() => {
-		console.log("lS " + localStorage.getItem("aside_open"));
-		console.log("clicked " + clicked);
-
 		if (clicked) {
 			localStorage.setItem("aside_open", "no");
 		} else {
@@ -38,9 +35,9 @@ function DefaultLayout() {
 	return (
 		<div>
 			<NavBar setClicked={setClicked} clicked={clicked} />
-			<div className="flex">
+			<div className="flex h-[calc(100vh-54.8px)]">
 				<Aside clicked={clicked} setClicked={setClicked} />
-				<div className="w-full p-5">
+				<div className="w-full h-full p-5 overflow-y-scroll">
 					<Outlet />
 				</div>
 			</div>

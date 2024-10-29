@@ -33,9 +33,7 @@ function Aside({ clicked }) {
 
 	return (
 		<aside
-			className={`bg-indigo-50/40 ${
-				clicked ? "" : "w-fit"
-			} h-[calc(100vh-54.8px)] py-1 px-3`}
+			className={`bg-indigo-50/40 h-full ${clicked ? "" : "w-fit"} py-1 px-3`}
 		>
 			<ul className="text-xs font-light">
 				{NAVLINKS.map(({ path, text, Icon }, key) => {
@@ -55,7 +53,7 @@ function Aside({ clicked }) {
 								<span className={`icon ${clicked ? "" : "md:mr-2 mr-0"}`}>
 									{Icon}
 								</span>
-								<span className="md:block hidden text-nowrap">
+								<span className="hidden md:block text-nowrap">
 									{clicked ? "" : text}
 								</span>
 							</NavLink>

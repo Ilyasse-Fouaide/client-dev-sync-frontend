@@ -25,7 +25,7 @@ function NavBar({ clicked, setClicked }) {
 			<ul className="flex items-center">
 				<li className="hidden md:block">
 					<button
-						className={`mr-2 focus:outline-2 focus:outline-blue-500 w-[30px] aspect-square flex items-center justify-center rounded-[6px] cursor-pointer ${
+						className={`mr-2 focus:outline-2 focus:outline-blue-500 w-[30px] aspect-square flex items-center justify-center rounded-[3px] cursor-pointer ${
 							clicked ? "bg-blue-200 text-blue-800" : ""
 						}`}
 						onClick={() => setClicked((prev) => !prev)}
@@ -48,18 +48,23 @@ function NavBar({ clicked, setClicked }) {
 				</li>
 			</ul>
 			<ul className="flex items-center space-x-2">
+				{/* Create project button */}
 				<li>
-					<Link to={"#"} className="focus:outline-2 focus:outline-indigo-500">
-						<div className="border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 bg-blue-100">
-							<Plus size={14} className="text-zinc-800" />
+					<Link
+						to={"/new"}
+						className="focus:outline-2 focus:outline-indigo-500"
+					>
+						<div className="border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 hover:bg-blue-100">
+							<Plus size={16} className="text-zinc-800" />
 						</div>
 					</Link>
 				</li>
+				{/* display all the inboxes button */}
 				<li>
 					<Link to={"#"} className="focus:outline-2 focus:outline-indigo-500">
-						<div className="relative border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 bg-blue-100">
+						<div className="relative border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 hover:bg-blue-100">
 							<span className="absolute w-[8px] rounded-full aspect-square bg-red-500 right-0 top-0 translate-x-1/2 -translate-y-1/2"></span>
-							<Inbox size={14} className="text-zinc-800" />
+							<Inbox size={16} className="text-zinc-800" />
 						</div>
 					</Link>
 				</li>

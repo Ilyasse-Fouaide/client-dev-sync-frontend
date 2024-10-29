@@ -30,26 +30,25 @@ function ProfilePopup() {
 			style={{ boxShadow: "0 0px 17px 1px rgba(0,0,0,.1)" }}
 		>
 			<div className="px-2 my-2 text-xs font-medium text-zinc-500">Account</div>
-			<div className="mb-2 mt-3 pb-3 pointer-events-none select-none border-b border-zinc-600/30">
-				<div className="px-2 flex items-center">
+			<div className="pb-3 mt-3 mb-2 border-b pointer-events-none select-none border-zinc-600/30">
+				<div className="flex items-center px-2">
 					<div className="mr-2">
 						<div className="w-[32px] aspect-square">
 							<img
 								src={data.image}
-								className="overflow-hidden rounded-full w-full h-full"
-								alt=""
+								className="w-full h-full overflow-hidden rounded-full"
 							/>
 						</div>
 					</div>
 					<div>
-						<div className="text-xs mb-1 text-zinc-600">{data?.full_name}</div>
+						<div className="mb-1 text-xs text-zinc-600">{data?.full_name}</div>
 						<div className="text-[9px] text-zinc-600">{data?.email}</div>
 					</div>
 				</div>
 			</div>
-			<div className="px-2 my-2 flex items-center">
+			<div className="flex items-center px-2 my-2">
 				<img src={logo} alt="" className="h-[14px] mr-2" />
-				<div className="text-xs text-zinc-500 font-medium">wenday</div>
+				<div className="text-xs font-medium text-zinc-500">wenday</div>
 			</div>
 			<ul>
 				{ITEMS.map((item, key) => {

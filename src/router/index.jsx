@@ -6,6 +6,8 @@ import MyWork from "../pages/MyWork";
 import Dashboard from "../pages/Dashboard";
 import DefaultLayout from "../components/DefaultLayout";
 import GuestLayout from "../components/GuestLayout";
+import CreateProject from "../components/CreateProject";
+import Projects from "../components/Projects";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
 			{
 				path: "/dashboard",
 				element: <Dashboard />,
+			},
+			{
+				path: "/new",
+				element: <CreateProject />,
+			},
+			{
+				path: "/projects/:id",
+				element: <Projects />,
 			},
 		],
 	},
