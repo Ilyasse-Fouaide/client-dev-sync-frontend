@@ -5,6 +5,7 @@ import header_logo from "../assets/header/1x/header-v3.png";
 import useClickOutside from "../hooks/useClickOutside";
 import ProfilePopup from "./ProfilePopup";
 import { useAuthContext } from "../context/ContextProvier";
+import Tooltip from "./TooltipComp";
 
 function NavBar({ clicked, setClicked }) {
 	const { data } = useAuthContext();
@@ -53,20 +54,31 @@ function NavBar({ clicked, setClicked }) {
 					<Link
 						to={"/new"}
 						className="focus:outline-2 focus:outline-indigo-500"
+						data-tooltip-id="new"
+						data-tooltip-content={"Create new proejct"}
+						data-tooltip-place="bottom"
 					>
 						<div className="border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 hover:bg-blue-100">
 							<Plus size={16} className="text-zinc-800" />
 						</div>
 					</Link>
+					<Tooltip id={"new"} />
 				</li>
 				{/* display all the inboxes button */}
 				<li>
-					<Link to={"#"} className="focus:outline-2 focus:outline-indigo-500">
+					<Link
+						to={"#"}
+						className="focus:outline-2 focus:outline-indigo-500"
+						data-tooltip-id="inbox"
+						data-tooltip-content={"Your inbox"}
+						data-tooltip-place="bottom"
+					>
 						<div className="relative border w-[30px] h-[30px] flex items-center justify-center rounded-[3px] border-blue-500 hover:bg-blue-100">
 							<span className="absolute w-[8px] rounded-full aspect-square bg-red-500 right-0 top-0 translate-x-1/2 -translate-y-1/2"></span>
 							<Inbox size={16} className="text-zinc-800" />
 						</div>
 					</Link>
+					<Tooltip id={"inbox"} />
 				</li>
 				<li className="relative" ref={ref}>
 					<button

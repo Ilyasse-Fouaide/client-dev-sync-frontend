@@ -24,7 +24,7 @@ function ProjectOptionsDropDown({ setOptionClicked, dialogRef }) {
 							<form onSubmit={item.submit}>
 								<button
 									type="submit"
-									className="w-full flex items-center px-2 py-1 ursor-pointer hover:bg-blue-100/50 rounded-[3px]"
+									className="w-full flex items-center px-2 py-1 ursor-pointer hover:bg-blue-100/50 rounded-[3px] active-button"
 								>
 									{item.Icon}
 									<span>{item.text}</span>
