@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { CalendarCheck, ChartNoAxesColumn, House } from "lucide-react";
+import TooltipComp from "./TooltipComp";
 
 const NAVLINKS = [
 	{
@@ -20,12 +21,21 @@ const NAVLINKS = [
 	},
 ];
 
-function Aside({ clicked }) {
+function Aside({ clicked, setClicked }) {
 	const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
 
 	React.useEffect(() => {
-		const handleResize = () => setInnerWidth(window.innerWidth);
+		const handleResize = () => {
+			setInnerWidth(window.innerWidth);
+			if (innerWidth < 768) {
+				setClicked(true);
+			} else {
+				setClicked(false);
+			}
+		};
+
 		window.addEventListener("resize", handleResize);
+
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
@@ -40,15 +50,18 @@ function Aside({ clicked }) {
 					return (
 						<li
 							key={key}
-							className={
-								clicked ? "" : "md:w-[180px] w-fit hover:bg-blue-100/50"
-							}
+							className={`hover:bg-blue-100/50 ${
+								clicked ? "" : "md:w-[180px] w-fit"
+							}`}
 						>
 							<NavLink
 								to={path}
 								className={
 									"flex p-[6px] mb-[3px] items-center rounded-[3px] w-full"
 								}
+								data-tooltip-id={path}
+								data-tooltip-content={text}
+								data-tooltip-place="right"
 							>
 								<span className={`icon ${clicked ? "" : "md:mr-2 mr-0"}`}>
 									{Icon}
@@ -57,6 +70,7 @@ function Aside({ clicked }) {
 									{clicked ? "" : text}
 								</span>
 							</NavLink>
+							<TooltipComp id={path} hidden={!clicked} />
 						</li>
 					);
 				})}

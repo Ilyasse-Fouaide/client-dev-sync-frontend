@@ -1,6 +1,6 @@
 import { Tooltip } from "react-tooltip";
 
-function TooltipComp({ id }) {
+function TooltipComp({ id, hidden = false }) {
 	return (
 		<Tooltip
 			id={id}
@@ -9,6 +9,7 @@ function TooltipComp({ id }) {
 				fontSize: "10px",
 				padding: "0.20rem 0.50rem",
 			}}
+			hidden={hidden}
 		/>
 	);
 }
