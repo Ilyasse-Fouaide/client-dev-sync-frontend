@@ -25,7 +25,7 @@ function NavBar({ clicked, setClicked }) {
 			<ul className="flex items-center">
 				<li className="hidden md:block">
 					<button
-						className={`mr-2 focus:outline-2 focus:outline-blue-500 w-[30px] aspect-square flex items-center justify-center rounded-[3px] cursor-pointer ${
+						className={`mr-2 active-button w-[30px] aspect-square flex items-center justify-center rounded-[3px] cursor-pointer ${
 							clicked ? "bg-blue-200 text-blue-800" : ""
 						}`}
 						onClick={() => setClicked((prev) => !prev)}
@@ -71,11 +71,11 @@ function NavBar({ clicked, setClicked }) {
 				<li className="relative" ref={ref}>
 					<button
 						onClick={handleProfileClick}
-						className="w-[30px] h-[30px] flex items-center justify-center cursor-pointer focus:outline-2 focus:outline-blue-800"
+						className="w-[30px] rounded-full h-[30px] flex items-center justify-center cursor-pointer active-button"
 					>
 						{/* <User size={16} className="text-blue-50" /> */}
 						<img
-							src={data.image}
+							src={data?.image}
 							alt=""
 							className="object-center w-full h-full rounded-full"
 						/>

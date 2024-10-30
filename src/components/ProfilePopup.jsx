@@ -25,10 +25,7 @@ function ProfilePopup() {
 	};
 
 	return (
-		<div
-			className="absolute top-[calc(30px+12px+1px)] right-0 bg-white w-[220px] p-2 rounded-lg"
-			style={{ boxShadow: "0 0px 17px 1px rgba(0,0,0,.1)" }}
-		>
+		<div className="absolute top-[calc(30px+12px+1px)] right-0 bg-white w-[220px] p-2 rounded-lg z-10 shadow-popup">
 			<div className="px-2 my-2 text-xs font-medium text-zinc-500">Account</div>
 			<div className="pb-3 mt-3 mb-2 border-b pointer-events-none select-none border-zinc-600/30">
 				<div className="flex items-center px-2">
