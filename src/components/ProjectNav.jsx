@@ -1,10 +1,10 @@
 import React from "react";
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, Pencil } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
 import ProjectOptionsDropDown from "./ProjectOptionsDropDown";
 import DeleteProjectModal from "./DeleteProjectModal";
 
-function ProjectNav() {
+function ProjectNav({ handlePencilClick }) {
 	const [optionClicked, setOptionClicked] = React.useState(false);
 	const dialogRef = React.useRef();
 
@@ -22,6 +22,16 @@ function ProjectNav() {
 		<nav>
 			<ul className="flex items-center space-x-3">
 				<li>
+					<button
+						className="flex items-center justify-center w-8 h-8 rounded-full active-button hover:bg-zinc-100"
+						onClick={handlePencilClick}
+					>
+						<span className="text-zinc-800">
+							<Pencil size={14} />
+						</span>
+					</button>
+				</li>
+				<li>
 					<button className="active-button flex items-center justify-center h-8 px-2.5 bg-zinc-200 hover:bg-zinc-300 rounded-[3px]">
 						<span className="text-xs font-semibold text-zinc-800 text-nowrap">
 							Invite / 1
@@ -30,7 +40,7 @@ function ProjectNav() {
 				</li>
 				<li ref={ref} className="relative">
 					<button
-						className="active-button flex items-center justify-center h-8 px-1.5 bg-zinc-200 hover:bg-zinc-300 rounded-[3px]"
+						className="active-button flex items-center justify-center h-8 w-8 bg-zinc-200 hover:bg-zinc-300 rounded-[3px]"
 						onClick={handleProfileClick}
 					>
 						<span className="text-zinc-800">
