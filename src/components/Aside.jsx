@@ -57,7 +57,7 @@ function Aside({ clicked, setClicked }) {
 							<NavLink
 								to={path}
 								className={
-									"flex p-[6px] mb-[3px] items-center rounded-[3px] w-full"
+									"flex p-[6px] mb-[3px] items-center rounded-[3px] w-full active-button"
 								}
 								data-tooltip-id={path}
 								data-tooltip-content={text}
