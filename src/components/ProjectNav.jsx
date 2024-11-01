@@ -2,7 +2,8 @@ import React from "react";
 import { Ellipsis, Pencil } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
 import ProjectOptionsDropDown from "./ProjectOptionsDropDown";
-import DeleteProjectModal from "./DeleteProjectModal";
+import DeleteProjectModal from "./modals/DeleteProjectModal";
+import InviteButton from "./modals/InviteButton";
 
 function ProjectNav({ handlePencilClick }) {
 	const [optionClicked, setOptionClicked] = React.useState(false);
@@ -32,11 +33,7 @@ function ProjectNav({ handlePencilClick }) {
 					</button>
 				</li>
 				<li>
-					<button className="active-button flex items-center justify-center h-8 px-2.5 bg-zinc-200 hover:bg-zinc-300 rounded-[3px]">
-						<span className="text-xs font-semibold text-zinc-800 text-nowrap">
-							Invite / 1
-						</span>
-					</button>
+					<InviteButton />
 				</li>
 				<li ref={ref} className="relative">
 					<button

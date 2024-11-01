@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useDeletProject from "../hooks/useDeletProject";
+import useDeletProject from "../../hooks/useDeletProject";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Spin() {
@@ -97,7 +97,9 @@ const DeleteProjectModal = React.forwardRef(function DeleteProjectModal(
 	React.useEffect(() => {
 		const handleClickOuside = (e) => {
 			if (dialogRef.current && !dialogRef.current.contains(e.target)) {
+				const root = document.getElementById("root");
 				dialogRef.current.close();
+				root.classList.remove("pointer-events-none");
 			}
 		};
 
@@ -110,11 +112,7 @@ const DeleteProjectModal = React.forwardRef(function DeleteProjectModal(
 	return (
 		<>
 			{createPortal(
-				<dialog
-					ref={dialogRef}
-					className="inset-0 z-[1000]"
-					style={{ boxShadow: "0px 0px 0px 600px rgba(0,0,0,0.41)" }}
-				>
+				<dialog ref={dialogRef} className="inset-0">
 					<div className="relative w-full max-w-[300px] sm:max-w-md p-6 bg-white">
 						<CloseIcon onClick={onClick} />
 

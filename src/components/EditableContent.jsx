@@ -55,7 +55,7 @@ const EditableContent = React.forwardRef(function EditableContent(
 		<div
 			ref={editableRef}
 			onClick={handleProjectNameClick}
-			className="mr-3 overflow-hidden text-2xl font-medium rounded-sm h-fit text-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+			className="mr-3 overflow-hidden text-2xl font-medium transition-colors rounded-sm h-fit text-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-zinc-200"
 			contentEditable={isEditing}
 			suppressContentEditableWarning={true}
 			onBlur={handleInputBlur}

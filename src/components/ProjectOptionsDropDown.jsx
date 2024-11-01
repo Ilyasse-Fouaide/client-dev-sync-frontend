@@ -8,8 +8,10 @@ function ProjectOptionsDropDown({ setOptionClicked, dialogRef }) {
 			text: "Delete",
 			Icon: <Trash size={12} className="mr-2" />,
 			submit: (e) => {
+				const root = document.getElementById("root");
 				e.preventDefault();
 				setOptionClicked(false);
+				root.classList.add("pointer-events-none");
 				dialogRef.current.show();
 			},
 		},
