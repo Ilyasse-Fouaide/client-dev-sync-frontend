@@ -10,7 +10,6 @@ const Dialog = React.forwardRef(function Dialog(
 
 	useClickOutside(dialogRef, () => {
 		const root = document.getElementById("root");
-		dialogRef.current.close();
 		setDialogOpen(false);
 		root.classList.remove("pointer-events-none");
 	});

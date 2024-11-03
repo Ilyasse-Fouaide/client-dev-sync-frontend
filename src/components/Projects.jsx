@@ -2,7 +2,6 @@ import React from "react";
 import Breadcrumb from "./Breadcrumb";
 import ProjectNav from "./ProjectNav";
 import EditableContent from "./EditableContent";
-import { Pencil } from "lucide-react";
 
 function Projects() {
 	const [projectName, setProjectName] = React.useState("Project name");

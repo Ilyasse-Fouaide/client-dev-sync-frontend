@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useDeletProject from "../../hooks/useDeletProject";
 import { useNavigate, useParams } from "react-router-dom";
+import Dialog from "./Dialog";
 
 function Spin() {
 	return (
@@ -68,12 +69,11 @@ function DeleteIcon() {
 	);
 }
 
-const DeleteProjectModal = React.forwardRef(function DeleteProjectModal(
-	_props,
-	dialogRef
-) {
+function DeleteProjectModal({ setDialogOpen }) {
 	const { projectId } = useParams();
 	const navigate = useNavigate();
+
+	const dialogRef = React.useRef();
 
 	const queryClient = useQueryClient();
 
@@ -94,62 +94,42 @@ const DeleteProjectModal = React.forwardRef(function DeleteProjectModal(
 
 	const onClick = () => dialogRef.current.close();
 
-	React.useEffect(() => {
-		const handleClickOuside = (e) => {
-			if (dialogRef.current && !dialogRef.current.contains(e.target)) {
-				const root = document.getElementById("root");
-				dialogRef.current.close();
-				root.classList.remove("pointer-events-none");
-			}
-		};
-
-		window.addEventListener("mousedown", handleClickOuside);
-		return () => {
-			window.removeEventListener("mousedown", handleClickOuside);
-		};
-	}, []);
-
 	return (
-		<>
-			{createPortal(
-				<dialog ref={dialogRef} className="inset-0">
-					<div className="relative w-full max-w-[300px] sm:max-w-md p-6 bg-white">
-						<CloseIcon onClick={onClick} />
+		<Dialog ref={dialogRef} setDialogOpen={setDialogOpen}>
+			<div className="relative w-full max-w-[300px] sm:max-w-md p-6 bg-white">
+				<CloseIcon onClick={onClick} />
 
-						<div className="my-8 text-center">
-							<DeleteIcon />
-							<h4 className="mt-4 text-lg font-semibold text-gray-800">
-								Are you sure you want to delete it?
-							</h4>
-							<p className="mt-4 text-sm text-gray-600">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-								auctor auctor arcu, at fermentum dui. Maecenas
-							</p>
-						</div>
+				<div className="my-8 text-center">
+					<DeleteIcon />
+					<h4 className="mt-4 text-lg font-semibold text-gray-800">
+						Are you sure you want to delete it?
+					</h4>
+					<p className="mt-4 text-sm text-gray-600">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor
+						auctor arcu, at fermentum dui. Maecenas
+					</p>
+				</div>
 
-						<div className="flex flex-col space-y-2">
-							<button
-								onClick={handleDelete}
-								type="button"
-								className="flex items-center justify-center px-4 py-2 text-sm tracking-wide text-white bg-red-500 rounded-lg hover:bg-red-600 active:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:bg-red-300"
-								disabled={isPending}
-							>
-								{isPending ? <Spin /> : "Delete"}
-							</button>
-							<button
-								type="button"
-								className="px-4 py-2 text-sm tracking-wide text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-								onClick={onClick}
-							>
-								Cancel
-							</button>
-						</div>
-					</div>
-				</dialog>,
-				document.body
-			)}
-		</>
+				<div className="flex flex-col space-y-2">
+					<button
+						onClick={handleDelete}
+						type="button"
+						className="flex items-center justify-center px-4 py-2 text-sm tracking-wide text-white bg-red-500 rounded-lg hover:bg-red-600 active:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:bg-red-300"
+						disabled={isPending}
+					>
+						{isPending ? <Spin /> : "Delete"}
+					</button>
+					<button
+						type="button"
+						className="px-4 py-2 text-sm tracking-wide text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+						onClick={onClick}
+					>
+						Cancel
+					</button>
+				</div>
+			</div>
+		</Dialog>
 	);
-});
+}
 
 export default DeleteProjectModal;

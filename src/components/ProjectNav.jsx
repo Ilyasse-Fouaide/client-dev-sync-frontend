@@ -2,12 +2,10 @@ import React from "react";
 import { Ellipsis, Pencil } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
 import ProjectOptionsDropDown from "./ProjectOptionsDropDown";
-import DeleteProjectModal from "./modals/DeleteProjectModal";
 import InviteButton from "./modals/InviteButton";
 
 function ProjectNav({ handlePencilClick }) {
 	const [optionClicked, setOptionClicked] = React.useState(false);
-	const dialogRef = React.useRef();
 
 	const ref = React.useRef();
 
@@ -45,14 +43,10 @@ function ProjectNav({ handlePencilClick }) {
 						</span>
 					</button>
 					{optionClicked && (
-						<ProjectOptionsDropDown
-							dialogRef={dialogRef}
-							setOptionClicked={setOptionClicked}
-						/>
+						<ProjectOptionsDropDown setOptionClicked={setOptionClicked} />
 					)}
 				</li>
 			</ul>
-			<DeleteProjectModal ref={dialogRef} />
 		</nav>
 	);
 }

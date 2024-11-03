@@ -6,13 +6,14 @@ function InviteButton() {
 	const [dialogOpen, setDialogOpen] = React.useState(false);
 	const inviteDialogRef = React.useRef();
 
-	const handleXButton = () => {
+	const handleCloseModal = () => {
+		const root = document.getElementById("root");
 		inviteDialogRef.current.close();
+		root.classList.remove("pointer-events-none");
 	};
 
 	const handleInviteClickedClick = () => {
 		const root = document.getElementById("root");
-		// inviteDialogRef.current.show();
 		root.classList.add("pointer-events-none");
 		setDialogOpen(true);
 	};
@@ -29,7 +30,7 @@ function InviteButton() {
 			</button>
 			{dialogOpen && (
 				<Dialog ref={inviteDialogRef} setDialogOpen={setDialogOpen}>
-					<Invite handleXButton={handleXButton} />
+					<Invite handleCloseModal={handleCloseModal} />
 				</Dialog>
 			)}
 		</React.Fragment>
