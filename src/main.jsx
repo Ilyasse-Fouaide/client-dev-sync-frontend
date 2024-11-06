@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")).render(
 			<ContextProvier>
 				<App />
 			</ContextProvier>
-			<ReactQueryDevtools />
+			{/* <ReactQueryDevtools /> */}
 		</QueryClientProvider>
 	</StrictMode>
 );

@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 import ProjectDirectory from "../pages/ProjectDirectory";
+import SingleProject from "../pages/SingleProject";
 const router = createBrowserRouter([
 	{
 		path: "/login",
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
 			{
 				path: "/dashboard",
 				element: <Dashboard />,
+			},
+			{
+				path: "/projects/:projectId",
+				element: <SingleProject />,
 			},
 		],
 	},

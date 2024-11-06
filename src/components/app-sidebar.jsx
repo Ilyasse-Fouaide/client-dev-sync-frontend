@@ -298,9 +298,7 @@ export function AppSidebar({ children }) {
 						</Breadcrumb>
 					</div>
 				</header>
-				<div className="flex flex-col flex-1 gap-4 p-4">
-					<div className="w-full max-w-3xl mx-auto">{children}</div>
-				</div>
+				<div className="p-6">{children}</div>
 			</SidebarInset>
 			<SidebarRight />
 		</React.Fragment>
