@@ -1,39 +1,40 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 import MyWork from "../pages/MyWork";
 import Dashboard from "../pages/Dashboard";
-import DefaultLayout from "../components/DefaultLayout";
-import GuestLayout from "../components/GuestLayout";
-import CreateProject from "../components/CreateProject";
-import Projects from "../components/Projects";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
+import ProjectDirectory from "../pages/ProjectDirectory";
 const router = createBrowserRouter([
 	{
-		path: "/",
-		element: <GuestLayout />,
-		children: [
-			{
-				path: "/",
-				element: <Navigate to={"/home"} />,
-			},
-			{
-				path: "/login",
-				element: <Login />,
-			},
-			{
-				path: "/register",
-				element: <Register />,
-			},
-		],
+		path: "/login",
+		element: (
+			<PublicRoute>
+				<Login />
+			</PublicRoute>
+		),
+	},
+	{
+		path: "/register",
+		element: (
+			<PublicRoute>
+				<Register />,
+			</PublicRoute>
+		),
 	},
 	{
 		path: "/",
-		element: <DefaultLayout />,
+		element: (
+			<ProtectedRoute>
+				<Home />
+			</ProtectedRoute>
+		),
 		children: [
 			{
-				path: "/home",
-				element: <Home />,
+				path: "/",
+				element: <ProjectDirectory />,
 			},
 			{
 				path: "/my-work",
@@ -42,14 +43,6 @@ const router = createBrowserRouter([
 			{
 				path: "/dashboard",
 				element: <Dashboard />,
-			},
-			{
-				path: "/new",
-				element: <CreateProject />,
-			},
-			{
-				path: "/projects/:projectId",
-				element: <Projects />,
 			},
 		],
 	},

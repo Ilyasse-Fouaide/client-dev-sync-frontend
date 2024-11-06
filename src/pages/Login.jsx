@@ -1,82 +1,116 @@
 import React from "react";
-import InputForm from "../components/InputForm";
-import useLogin from "../hooks/useLogin";
+import { Button } from "@/components/ui/button";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import useLogin from "@/hooks/useLogin";
 
 function Login() {
-	const [isLoading, setIsloading] = React.useState(false);
-	const [error, setError] = React.useState(false);
+	const [error, setError] = React.useState(null);
 
 	const emailRef = React.useRef();
 	const passwordRef = React.useRef();
 
-	const handleSubmit = (e) => {
+	const { mutate, isPending } = useMutation({
+		mutationFn: () =>
+			useLogin(emailRef.current.value, passwordRef.current.value),
+		onSuccess: () => {
+			window.location.reload();
+		},
+		onError: (err) => {
+			setError(err.response.data.message);
+			passwordRef.current.value = "";
+		},
+	});
+
+	React.useEffect(() => {
+		if (error) {
+			emailRef.current.focus();
+		}
+	}, [error]);
+
+	const login = (e) => {
 		e.preventDefault();
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
-		setIsloading(true);
-		useLogin(email, password)
-			.then((res) => {
-				window.location.reload();
-			})
-			.catch((err) => {
-				setError(err.response.data.message);
-				emailRef.current.value = "";
-				passwordRef.current.value = "";
-			})
-			.finally(() => {
-				setIsloading(false);
-			});
+		mutate();
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center h-screen mx-auto">
-			<div className="">
-				<form onSubmit={handleSubmit}>
-					<div>
-						<label className="inline-block pb-1 text-xs text-zinc-500">
-							Email
-						</label>
-						<InputForm
-							isError={error}
-							ref={emailRef}
-							type="email"
-							isLoading={isLoading}
-							placeholder="name@company.com"
-						/>
-					</div>
-
-					<div className="mt-3">
-						<label className="inline-block pb-1 text-xs text-zinc-500">
-							Password
-						</label>
-						<InputForm
-							isError={error}
-							isLoading={isLoading}
-							ref={passwordRef}
-							type="password"
-							placeholder="Enter your password"
-						/>
-					</div>
-
-					{error && (
-						<div
-							className="relative px-4 py-3 mt-3 text-sm text-red-700 bg-red-100 border border-red-400 rounded"
-							role="alert"
-						>
-							<span class="block sm:inline">{error}</span>
+		<div className="relative flex h-svh">
+			<div className="flex items-center justify-center bg-background w-full lg:w-[50%]">
+				<Card className="max-w-sm mx-auto border-none shadow-none">
+					<CardHeader className="text-center">
+						<CardTitle className="text-2xl">Log in to your account</CardTitle>
+						<CardDescription>
+							Enter your email below to login to your account
+						</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<form onSubmit={login} className="grid gap-4">
+							{error && (
+								<Alert variant="destructive">
+									<AlertCircle className="w-4 h-4" />
+									<AlertDescription>{error}</AlertDescription>
+								</Alert>
+							)}
+							<div className="grid gap-2">
+								<Label htmlFor="email">Email</Label>
+								<Input
+									id="email"
+									ref={emailRef}
+									type="email"
+									placeholder="example@company.com"
+									disabled={isPending}
+								/>
+							</div>
+							<div className="grid gap-2">
+								<div className="flex items-center">
+									<Label htmlFor="password">Password</Label>
+									<Link
+										href="#"
+										className="inline-block ml-auto text-sm underline"
+									>
+										Forgot your password?
+									</Link>
+								</div>
+								<Input
+									id="password"
+									ref={passwordRef}
+									type="password"
+									disabled={isPending}
+								/>
+							</div>
+							<Button type="submit" className="w-full" disabled={isPending}>
+								{isPending ? <Loader2 className="animate-spin" /> : "Login"}
+							</Button>
+							<Button
+								type="button"
+								variant="outline"
+								className="w-full"
+								disabled={isPending}
+							>
+								Login with Google
+							</Button>
+						</form>
+						<div className="mt-4 text-sm text-center">
+							Don&apos;t have an account?{" "}
+							<Link to="/register" className="underline">
+								Sign up
+							</Link>
 						</div>
-					)}
-
-					<div className="mt-5">
-						<button
-							disabled={isLoading}
-							className="text-xs w-full bg-blue-500 text-zinc-50 rounded-[3px] px-4 py-2"
-						>
-							Submit
-						</button>
-					</div>
-				</form>
+					</CardContent>
+				</Card>
 			</div>
+			<div className="hidden bg-muted w-0 lg:w-[50%] lg:flex"></div>
 		</div>
 	);
 }

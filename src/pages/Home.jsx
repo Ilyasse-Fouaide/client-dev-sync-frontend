@@ -1,10 +1,13 @@
 import React from "react";
-import MyProjects from "../components/MyProjects";
+import Layout from "@/components/Layout";
+import { Outlet } from "react-router-dom";
 
 function Home() {
 	return (
-		<div className="w-[70%] h-full">
-			<MyProjects />
+		<div>
+			<Layout>
+				<Outlet />
+			</Layout>
 		</div>
 	);
 }
